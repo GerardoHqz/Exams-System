@@ -12,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class RolexUser {
     @Id
+    @Column(name="roleuserid")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID RoleUserId;
 

@@ -40,7 +40,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body(errorHandler.mapErrors(validations.getFieldErrors()));
         }
 
-        Users user = userRepository.findByUsername(info.getUsernmae());
+        Users user = userRepository.findByUsername(info.getUsername());
         if(user == null){
             return ResponseEntity.badRequest().body("The user does not exist");
         }

@@ -1,5 +1,6 @@
 package com.backend.exams.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,16 +25,18 @@ public class Users implements UserDetails {
     @Column(name="username")
     private String username;
     @Column(name="password")
+    @JsonIgnore
     private String password;
     @Column(name="name")
     private String name;
+    @Column(name="lastname")
     private String lastname;
     @Column(name="email")
     private String email;
     @Column(name="telephone")
     private String telephone;
     @Column(name="enabled")
-    private boolean enabled = true;
+    private boolean enabled;
     @Column(name="profile")
     private String profile;
 
@@ -44,7 +47,7 @@ public class Users implements UserDetails {
     private Set<RolexUser> rolesUser = new HashSet<>();
 
     public Users(String username, String password, String name, String lastname, String email,
-                 String telephone, boolean enabled, String profile) {
+                 String telephone, String profile) {
         super();
         this.username = username;
         this.password = password;
@@ -52,7 +55,7 @@ public class Users implements UserDetails {
         this.lastname = lastname;
         this.email = email;
         this.telephone = telephone;
-        this.enabled = enabled;
+        this.enabled = true;
         this.profile = profile;
     }
 
@@ -74,6 +77,11 @@ public class Users implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() {
         return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.enabled;
     }
 }
 

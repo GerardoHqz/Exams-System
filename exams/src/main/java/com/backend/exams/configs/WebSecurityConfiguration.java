@@ -69,7 +69,6 @@ public class WebSecurityConfiguration implements WebMvcConfigurer {
         http.cors(Customizer.withDefaults()).authorizeHttpRequests(auth -> {
             auth.requestMatchers("/auth/**").permitAll();
             auth.requestMatchers("/swagger-ui/index.html").permitAll();
-            auth.requestMatchers("/login/**", "/login?error/**").permitAll();
             auth.requestMatchers("/home").permitAll();
             auth.anyRequest().authenticated();
         });

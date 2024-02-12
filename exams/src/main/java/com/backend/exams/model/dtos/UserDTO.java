@@ -37,7 +37,7 @@ public class UserDTO {
     @NotBlank(message = "Profile cannot be blank")
     private String profile;
 
-    @NotBlank(message = "Roles cannot be blank")
+    @NotEmpty(message = "Roles cannot be blank")
     private Set<String> rolesUser = new HashSet<>();
 
 }

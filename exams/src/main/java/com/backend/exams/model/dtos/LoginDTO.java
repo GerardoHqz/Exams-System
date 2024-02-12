@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginDTO {
     @NotEmpty(message = "Username can't be empty")
-    private String usernmae;
+    private String username;
 
     @NotEmpty(message = "Old password can't be empty")
     @Size(min = 6, message = "Password must have a minimum of 6 characters")

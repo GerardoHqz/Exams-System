@@ -11,7 +11,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "TOKEN")
+@Table(name = "TOKENS")
 public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

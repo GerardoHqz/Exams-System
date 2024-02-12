@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     @Transactional(rollbackOn = Exception.class)
     public void saveUser(UserDTO info) throws Exception {
         try {
-            Users user = new Users(info.getUsername(), info.getPassword(), info.getName(), info.getLastname(),
+            Users user = new Users(info.getUsername(), passwordEncoder.encode(info.getPassword()), info.getName(), info.getLastname(),
                     info.getEmail(), info.getTelephone(), true, info.getProfile());
             boolean isValid = userRepository.existsByUsername(user.getUsername());
             if (isValid) {
@@ -155,7 +155,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void login(LoginDTO info) throws Exception {
-        Users user = userRepository.findByUsername(info.getUsernmae());
+        Users user = userRepository.findByUsername(info.getUsername());
 
         if(!comparePass(info.getPassword(), user.getPassword())){
             throw new Exception("Invalid credentials");

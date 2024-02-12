@@ -1,15 +1,12 @@
 package com.backend.exams.controllers;
 
-import com.backend.exams.model.dtos.UserDTO;
 import com.backend.exams.model.entities.Users;
 import com.backend.exams.repositories.UserRepository;
 import com.backend.exams.services.UserService;
 import com.backend.exams.utils.RequestErrorHandler;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +30,7 @@ public class UserController {
         if (user == null) {
             return new ResponseEntity<>("User not found",HttpStatus.NOT_FOUND);
         }
+
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -40,7 +38,6 @@ public class UserController {
     @PutMapping("/{username}")
     public ResponseEntity<?> toggleUserStatus(@PathVariable String username) {
         Users user = userService.findUserAuthenticated();
-
 
         if (user == null) {
             return new ResponseEntity<>("User not found",HttpStatus.NOT_FOUND);
